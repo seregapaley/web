@@ -4,21 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>АБ "ПАЛЄЙ І ПАРТНЕРИ" — Адвокатське бюро Львів</title>
-    <meta name="description" content="Адвокатське бюро 'ПАЛЄЙ І ПАРТНЕРИ' — професійна юридична допомога у Львові.">
+    <meta name="description" content="Адвокатське бюро 'ПАЛЄЙ І ПАРТНЕРИ' — професійна юридична допомога у Львові. Захист прав, супровід бізнесу, представництво в суді.">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://googleapis.com" rel="stylesheet">
+    <!-- Підключення правильних та красивих шрифтів -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --primary: #0f172a;
-            --accent: #b45309;
+            --primary: #0f172a; /* Глибокий синій */
+            --accent: #b45309; /* Стримане золото/бурштин */
+            --accent-light: #fef3c7;
             --text-dark: #1e293b;
             --text-light: #64748b;
             --bg-light: #f8fafc;
-            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
             --transition: all 0.3s ease;
         }
 
@@ -26,52 +28,79 @@
         body { font-family: 'Inter', sans-serif; color: var(--text-dark); background-color: var(--bg-light); line-height: 1.6; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
 
-        nav { background-color: white; position: fixed; top: 0; width: 100%; z-index: 1000; box-shadow: 0 1px 3px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; }
-        .logo { font-weight: 700; font-size: 20px; color: var(--primary); }
+        /* Навігація */
+        nav { background-color: white; position: fixed; top: 0; width: 100%; z-index: 1000; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; }
+        .logo { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 20px; color: var(--primary); }
         .nav-links { display: flex; list-style: none; gap: 25px; }
-        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 500; }
-        .menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
-        .menu-toggle span { display: block; width: 25px; height: 3px; background-color: var(--primary); }
+        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 500; transition: var(--transition); }
+        .nav-links a:hover { color: var(--accent); }
 
+        .menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 5px; }
+        .menu-toggle span { display: block; width: 25px; height: 3px; background-color: var(--primary); transition: var(--transition); }
+
+        /* Головний екран із преміальним фоном */
         header {
             background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('https://unsplash.com') center center / cover no-repeat;
             color: white; padding: 180px 20px 120px; text-align: center;
         }
-        header h1 { font-size: 46px; margin-bottom: 20px; }
-        header p { font-size: 20px; max-width: 600px; margin: 0 auto 30px; color: #cbd5e1; }
+        header h1 { font-size: 46px; margin-bottom: 20px; letter-spacing: 0.5px; }
+        header p { font-size: 20px; max-width: 600px; margin: 0 auto 30px; color: #cbd5e1; font-weight: 300; }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 80px 20px; }
-        .section-title { text-align: center; font-size: 32px; margin-bottom: 40px; color: var(--primary); }
+        .section-title { text-align: center; font-size: 32px; margin-bottom: 40px; position: relative; color: var(--primary); }
+        .section-title::after { content: ''; display: block; width: 50px; height: 3px; background-color: var(--accent); margin: 10px auto 0; }
 
+        /* Про нас */
         .about-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-        .about-text { font-size: 18px; color: var(--text-light); }
+        .about-text { font-size: 18px; color: var(--text-light); text-align: left; }
         .about-img { width: 100%; height: 350px; object-fit: cover; border-radius: 8px; box-shadow: var(--shadow); }
 
+        /* Послуги */
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .service-card { background: white; border-radius: 8px; box-shadow: var(--shadow); border-top: 4px solid var(--primary); overflow: hidden; }
+        .service-card { background: white; border-radius: 8px; box-shadow: var(--shadow); border-top: 4px solid var(--primary); transition: var(--transition); overflow: hidden; }
+        .service-card:hover { transform: translateY(-5px); border-top-color: var(--accent); }
         .service-img { width: 100%; height: 180px; object-fit: cover; }
         .service-content { padding: 25px; }
+        .service-card h3 { margin-bottom: 10px; font-size: 20px; }
 
+        /* Переваги */
         #advantages { background: linear-gradient(rgba(248, 250, 252, 0.93), rgba(248, 250, 252, 0.93)), url('https://unsplash.com') center center / cover no-repeat; }
         .advantages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; text-align: center; }
         .adv-item { background: white; padding: 30px 20px; border-radius: 8px; box-shadow: var(--shadow); }
         .adv-icon { font-size: 32px; margin-bottom: 15px; }
+        .adv-item h3 { font-size: 18px; margin-bottom: 10px; }
+        .adv-item p { font-size: 14px; color: var(--text-light); }
 
+        /* Контакти */
         #contact { background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.95)), url('https://unsplash.com') center center / cover no-repeat; color: white; }
-        .contact-wrapper { background: rgba(255, 255, 255, 0.05); padding: 40px; border-radius: 12px; text-align: center; max-width: 600px; margin: 0 auto; }
-        .btn-group { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
-        .btn { padding: 14px 28px; border-radius: 6px; font-weight: 600; text-decoration: none; color: white; }
-        .btn-primary { background-color: var(--accent); }
-        .btn-telegram { background-color: #0088cc; }
+        #contact .section-title { color: white; }
+        .contact-wrapper { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 40px; border-radius: 12px; box-shadow: var(--shadow); text-align: center; max-width: 600px; margin: 0 auto; }
+        .contact-info { font-size: 18px; margin-bottom: 30px; }
+        .contact-info p { margin-bottom: 15px; }
+        
+        .btn-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+        .btn { padding: 14px 28px; border: none; border-radius: 6px; font-size: 16px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; transition: var(--transition); }
+        .btn-primary { background-color: var(--accent); color: white; }
+        .btn-primary:hover { background-color: #92400e; }
+        .btn-secondary { background-color: #475569; color: white; }
+        .btn-secondary:hover { background-color: #334155; }
+        .btn-telegram { background-color: #0088cc; color: white; }
+        .btn-telegram:hover { background-color: #0077b5; }
 
-        footer { background-color: #0b111e; color: #94a3b8; text-align: center; padding: 30px 20px; font-size: 14px; }
+        footer { background-color: #0b111e; color: #94a3b8; text-align: center; padding: 30px 20px; font-size: 14px; border-top: 1px solid rgba(255, 255, 255, 0.05); }
 
         @media (max-width: 768px) {
             .menu-toggle { display: flex; }
-            .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: white; padding: 20px; }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background-color: white; padding: 20px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); gap: 15px; text-align: center; }
             .nav-links.active { display: flex; }
-            .about-wrapper { grid-template-columns: 1fr; }
-            .btn-group { flex-direction: column; }
+            .about-wrapper { grid-template-columns: 1fr; gap: 20px; }
+            .about-text { text-align: center; }
+            header { padding-top: 140px; }
+            header h1 { font-size: 32px; }
+            header p { font-size: 16px; }
+            .section-title { font-size: 26px; }
+            .contact-wrapper { padding: 25px; }
+            .btn { width: 100%; justify-content: center; }
         }
     </style>
 </head>
@@ -79,11 +108,12 @@
 
     <nav>
         <div class="logo">АБ "ПАЛЄЙ І ПАРТНЕРИ"</div>
-        <button class="menu-toggle" id="mobile-menu"><span></span><span></span><span></span></button>
+        <button class="menu-toggle" id="mobile-menu" aria-label="Відкрити меню"><span></span><span></span><span></span></button>
         <ul class="nav-links" id="nav-list">
             <li><a href="#about">Про нас</a></li>
             <li><a href="#services">Послуги</a></li>
             <li><a href="#advantages">Переваги</a></li>
+            <li><a href="/blog/index.html">Блог</a></li>
             <li><a href="#contact">Контакти</a></li>
         </ul>
     </nav>
@@ -93,31 +123,57 @@
         <p>Захищаємо ваші права. Професійно. Надійно. Конфіденційно.</p>
         <a href="tel:+380931611020" class="btn btn-primary">Термінова консультація</a>
     </header>
-
-    <div class="container" id="about">
+ <div class="container" id="about">
         <h2 class="section-title">Про нас</h2>
         <div class="about-wrapper">
-            <p class="about-text">Адвокатське бюро "ПАЛЄЙ І ПАРТНЕРИ" — команда досвідчених юристів, яка надає повний спектр правової допомоги у Львові.</p>
-            <img src="https://unsplash.com" alt="Офіс" class="about-img">
+            <p class="about-text">Адвокатське бюро "ПАЛЄЙ І ПАРТНЕРИ" — команда досвідчених юристів, яка надає повний спектр правової допомоги фізичним та юридичним особам. Ми працюємо на результат, базуючись на принципах абсолютної довіри та суворої конфіденційності.</p>
+            <img src="https://unsplash.com" alt="Офіс адвокатського бюро" class="about-img">
         </div>
     </div>
-
     <div style="background-color: white;">
         <div class="container" id="services">
             <h2 class="section-title">Наші послуги</h2>
             <div class="services-grid">
                 <div class="service-card">
-                    <img src="https://unsplash.com" alt="Суд" class="service-img">
+                    <img src="https://unsplash.com" alt="Цивільне право" class="service-img">
                     <div class="service-content">
-                        <h3>Цивільне та Кримінальне право</h3>
-                        <p>Спори щодо майна, договорів, а також захист на всіх стадіях кримінального провадження.</p>
+                        <h3>Цивільне право</h3>
+                        <p>Спори щодо майна, спадщини, договорів та відшкодування збитків.</p>
                     </div>
                 </div>
                 <div class="service-card">
-                    <img src="https://unsplash.com" alt="Бізнес" class="service-img">
+                    <img src="https://unsplash.com" alt="Кримінальні справи" class="service-img">
                     <div class="service-content">
-                        <h3>Супровід бізнесу та суди</h3>
-                        <p>Абонентське обслуговування компаній, аналіз ризиків та представництво в судах.</p>
+                        <h3>Кримінальні справи</h3>
+                        <p>Захист інтересів на всіх стадіях кримінального провадження.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://unsplash.com" alt="Сімейні спори" class="service-img">
+                    <div class="service-content">
+                        <h3>Сімейні спори</h3>
+                        <p>Розірвання шлюбу, поділ майна, аліменти та визначення місця проживання дітей.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://unsplash.com" alt="Юридичний супровід бізнесу" class="service-img">
+                    <div class="service-content">
+                        <h3>Юридичний супровід бізнесу</h3>
+                        <p>Абонентське обслуговування компаній, аналіз ризиків та підготовка контрактів.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://unsplash.com" alt="Представництво в суді" class="service-img">
+                    <div class="service-content">
+                        <h3>Представництво в суді</h3>
+                        <p>Професійний захист ваших інтересів у судах всіх інстанцій.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://unsplash.com" alt="Виконавче провадження" class="service-img">
+                    <div class="service-content">
+                        <h3>Виконавче провадження</h3>
+                        <p>Супровід та контроль процесу реального виконання судових рішень.</p>
                     </div>
                 </div>
             </div>
@@ -127,8 +183,10 @@
     <div class="container" id="advantages">
         <h2 class="section-title">Чому обирають нас</h2>
         <div class="advantages-grid">
-            <div class="adv-item"><div class="adv-icon">🎓</div><h3>Кваліфікація</h3><p>Багаторічний практичний досвід.</p></div>
-            <div class="adv-item"><div class="adv-icon">🔒</div><h3>Конфіденційність</h3><p>Суворе дотримання таємниці.</p></div>
+            <div class="adv-item"><div class="adv-icon">👤</div><h3>Індивідуальний підхід</h3><p>Глибокий аналіз кожної деталі вашої справи.</p></div>
+            <div class="adv-item"><div class="adv-icon">🎓</div><h3>Висока кваліфікація</h3><p>Багаторічний практичний досвід захисту.</p></div>
+            <div class="adv-item"><div class="adv-icon">🤝</div><h3>Прозорість</h3><p>Зрозумілі ціни та чесна оцінка перспектив справи.</p></div>
+            <div class="adv-item"><div class="adv-icon">🔒</div><h3>Конфіденційність</h3><p>Суворе дотримання адвокатської таємниці.</p></div>
         </div>
     </div>
 
@@ -136,11 +194,15 @@
         <div class="container">
             <h2 class="section-title">Контакти</h2>
             <div class="contact-wrapper">
-                <p>📍 Львів, вул. Йосипа Сліпого 4/1</p>
-                <p>📞 +38 (093) 161-10-20</p>
+                <div class="contact-info">
+                    <p>📍 Львів, вул. Йосипа Сліпого 4/1</p>
+                    <p>📞 <a href="tel:+380931611020" style="color: inherit; text-decoration: none; font-weight: 600;">+38 (093) 161-10-20</a></p>
+                    <p>✉ paleypartners@gmail.com</p>
+                </div>
                 <div class="btn-group">
                     <a href="tel:+380931611020" class="btn btn-primary">Зателефонувати</a>
-                    <a href="https://t.me" class="btn btn-telegram">Telegram</a>
+                    <a href="mailto:paleypartners@gmail.com" class="btn btn-secondary">Написати на Email</a>
+                    <a href="https://t.me" target="_blank" class="btn btn-telegram">Telegram</a>
                 </div>
             </div>
         </div>
@@ -152,6 +214,9 @@
         const mobileMenu = document.getElementById('mobile-menu');
         const navList = document.getElementById('nav-list');
         mobileMenu.addEventListener('click', () => navList.classList.toggle('active'));
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => navList.classList.remove('active'));
+        });
     </script>
 </body>
 </html>
