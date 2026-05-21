@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>АБ "ПАЛЄЙ І ПАРТНЕРИ" — Адвокатське бюро Львів</title>
     
-    <!-- [+] ДОДАНЕ ЗАВДАННЯ: Фавікон у вкладку браузера (Сучасний SVG-формат з емодзі) -->
+    <!-- Фавікон у вкладку браузера (Сучасний SVG-формат з емодзі) -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://w3.org viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚖️</text></svg>">
     
     <!-- Підключення шрифтів та паку іконок для єдиного стилю -->
@@ -15,7 +15,7 @@
     <script src="https://unpkg.com"></script>
 
     <style>
-        /* [+] ЗАВДАННЯ: СТИЛІ АДАПТИВНОСТІ (ШРИФТИ, ВІДСТУПИ, СІТКА) */
+        /* СТИЛІ АДАПТИВНОСТІ ТА БАЗОВІ НАЛАШТУВАННЯ */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -37,8 +37,7 @@
         /* Шапка сайту */
         header {
             background-color: #1A202C;
-            color: white;
-            padding: 20px 0;
+            padding: 12px 0;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -49,16 +48,19 @@
             justify-content: space-between;
             align-items: center;
         }
-        .logo {
-            font-weight: 700;
-            font-size: 1.3rem;
-            letter-spacing: 0.5px;
+        .logo-img {
+            height: 55px;
+            width: auto;
+            display: block;
+            object-fit: contain;
+            border-radius: 4px; /* Легке закруглення для вашого фото-логотипу */
         }
         nav a {
             color: #CBD5E0;
             text-decoration: none;
             margin-left: 20px;
             font-size: 0.95rem;
+            font-weight: 500;
             transition: color 0.2s;
         }
         nav a:hover { color: white; }
@@ -85,7 +87,7 @@
             margin-bottom: 35px;
         }
 
-        /* [+] ЗАВДАННЯ: КОНТРАСТНА ЧЕРВОНА КНОПКА З АНІМАЦІЄЮ */
+        /* КОНТРАСТНА ЧЕРВОНА КНОПКА З АНІМАЦІЄЮ */
         .btn-urgent {
             display: inline-flex;
             align-items: center;
@@ -115,16 +117,36 @@
             100% { transform: scale(1); }
         }
 
+        /* Блок "Про нас" з фото офісу */
+        .about-block {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid #E2E8F0;
+            margin-bottom: 60px;
+        }
+        .about-img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            background-color: #EDF2F7;
+        }
+
         /* Заголовки секцій */
         h2.section-title {
             font-size: 2rem;
             color: #1A202C;
             text-align: center;
             margin-bottom: 40px;
-            position: relative;
         }
 
-        /* [+] ЗАВДАННЯ: ЄДИНИЙ СТИЛЬ ДЛЯ ІКОНОК ТА КАРТОК ПОСЛУГ */
+        /* СТИЛЬ ДЛЯ ІКОНОК ТА КАРТОК ПОСЛУГ */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -144,7 +166,7 @@
             border-color: #CBD5E0;
         }
         .icon-box {
-            color: #1A202C; /* Єдиний темний колір для всіх іконок сайту */
+            color: #1A202C;
             margin-bottom: 20px;
             display: inline-block;
         }
@@ -154,6 +176,44 @@
             margin-bottom: 12px;
         }
         .service-card p {
+            color: #718096;
+            font-size: 0.95rem;
+        }
+
+        /* СЕКЦІЯ НАШОЇ КОМАНДИ (З ФОТОГРАФІЯМИ) */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        .team-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #E2E8F0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            transition: transform 0.2s;
+        }
+        .team-card:hover {
+            transform: translateY(-4px);
+        }
+        .team-photo {
+            width: 100%;
+            height: 360px;
+            object-fit: cover;
+            background-color: #EDF2F7;
+        }
+        .team-info {
+            padding: 25px;
+        }
+        .team-info h4 {
+            font-size: 1.2rem;
+            color: #1A202C;
+            margin-bottom: 6px;
+        }
+        .team-info p {
             color: #718096;
             font-size: 0.95rem;
         }
@@ -215,7 +275,7 @@
         }
         .btn-social:hover { background: #4A5568; }
 
-        /* [+] ЗАВДАННЯ: МЕДІА-ЗАПИТИ ДЛЯ ПЕРЕВІРКИ МОБІЛЬНОЇ АДАПТИВНОСТІ */
+        /* МЕДІА-ЗАПИТИ ДЛЯ МОБІЛЬНОЇ АДАПТИВНОСТІ */
         @media (max-width: 768px) {
             .container { padding: 20px 15px; }
             .header-flex { flex-direction: column; gap: 15px; text-align: center; }
@@ -225,9 +285,13 @@
             .hero h1 { font-size: 1.9rem; }
             .hero p { font-size: 1rem; margin-bottom: 25px; }
             
+            .about-block { grid-template-columns: 1fr; gap: 20px; padding: 20px; }
+            .about-img { height: 220px; }
+            
             h2.section-title { font-size: 1.5rem; margin-bottom: 25px; }
             .services-grid { grid-template-columns: 1fr; gap: 20px; }
             .service-card { padding: 25px; }
+            .team-photo { height: 320px; }
             
             /* Фіксація термінової кнопки внизу екрана мобільного телефона */
             .mobile-sticky-holder {
@@ -250,23 +314,31 @@
 </head>
 <body>
 
-    <!-- Шапка сайту -->
+    <!-- Шапка сайту з вашим фірмовим фото-логотипом -->
     <header>
         <div class="container" style="padding: 0 20px;">
             <div class="header-flex">
-                <div class="logo">АБ "ПАЛЄЙ І ПАРТНЕРИ"</div>
+                
+                <!-- Блок вашого логотипу (висота зафіксована для красивого відображення) -->
+                <a href="#" style="display: block; opacity: 0.95; transition: opacity 0.2s;">
+                    <img src="images/logo.jpg" alt="АБ ПАЛЄЙ І ПАРТНЕРИ" class="logo-img">
+                </a>
+
+                <!-- Навігація -->
                 <nav>
                     <a href="#about">Про нас</a>
                     <a href="#services">Послуги</a>
+                    <a href="#team">Команда</a>
                     <a href="#contacts">Контакти</a>
                 </nav>
+
             </div>
         </div>
     </header>
 
     <div class="container">
         
-        <!-- Головна секція з оновленою кнопкою -->
+        <!-- Головна секція -->
         <section class="hero">
             <h1>Захищаємо ваші права.<br>Професійно. Надійно. Конфіденційно.</h1>
             <p>Адвокатське бюро у Львові — Ваша персональна юридична опора.</p>
@@ -281,50 +353,71 @@
 
         <!-- Розділ "Про нас" -->
         <h2 class="section-title" id="about">Про нас</h2>
-        <section style="background: white; padding: 30px; border-radius: 12px; border: 1px solid #E2E8F0; margin-bottom: 60px;">
-            <p style="color: #4A5568; font-size: 1.1rem; text-align: center; max-width: 800px; margin: 0 auto;">
-                Адвокатське бюро "ПАЛЄЙ І ПАРТНЕРИ" — команда досвідчених юристів, яка надає повний спектр правової допомоги фізичним та юридичним особам. Ми працюємо на результат, базуючись на принципах абсолютної довіри та суворої конфіденційності.
-            </p>
+        <section class="about-block">
+            <div>
+                <p style="color: #4A5568; font-size: 1.1rem; margin-bottom: 15px;">
+                    Адвокатське бюро "ПАЛЄЙ І ПАРТНЕРИ" — команда досвідчених юристів, яка надає повний спектр правової допомоги фізичним та юридичним особам. 
+                </p>
+                <p style="color: #4A5568; font-size: 1.1rem;">
+                    Ми працюємо на результат, базуючись на принципах абсолютної довіри, глибокого аналізу кожної справи та суворої адвокатської таємниці.
+                </p>
+            </div>
+            <img src="images/office.jpg" alt="Офіс Адвокатського Бюро" class="about-img">
         </section>
 
-        <!-- Розділ послуг в єдиному графічному стилі -->
+        <!-- Розділ послуг -->
         <h2 class="section-title" id="services">Наші послуги</h2>
         <section class="services-grid">
-            
             <div class="service-card">
                 <div class="icon-box"><i data-lucide="scale" size="36"></i></div>
                 <h3>Цивільне право</h3>
                 <p>Спори щодо майна, спадщини, договорів та відшкодування збитків.</p>
             </div>
-
             <div class="service-card">
                 <div class="icon-box"><i data-lucide="gavel" size="36"></i></div>
                 <h3>Кримінальні справи</h3>
                 <p>Захист інтересів на всіх стадіях кримінального провадження.</p>
             </div>
-
             <div class="service-card">
                 <div class="icon-box"><i data-lucide="heart" size="36"></i></div>
                 <h3>Сімейні спори</h3>
                 <p>Розірвання шлюбу, поділ майна, аліменти та визначення місця проживання.</p>
             </div>
-
             <div class="service-card">
                 <div class="icon-box"><i data-lucide="briefcase" size="36"></i></div>
                 <h3>Юридичний супровід бізнесу</h3>
                 <p>Абонентське обслуговування компаній, аналіз ризиків та підготовка контрактів.</p>
             </div>
-
             <div class="service-card">
                 <div class="icon-box"><i data-lucide="landmark" size="36"></i></div>
                 <h3>Представництво в суді</h3>
                 <p>Професійний захист ваших інтересів у судах всіх інстанцій.</p>
             </div>
-
             <div class="service-card">
                 <div class="icon-box"><i data-lucide="file-check-2" size="36"></i></div>
                 <h3>Виконавче провадження</h3>
                 <p>Супровід та контроль процесу реального виконання судових рішень.</p>
+            </div>
+        </section>
+
+        <!-- СЕКЦІЯ НАШОЇ КОМАНДИ -->
+        <h2 class="section-title" id="team">Наша команда</h2>
+        <section class="team-grid">
+            
+            <div class="team-card">
+                <img src="images/yuriy-paley.jpg" alt="Юрій Палєй — Керуючий партнер" class="team-photo">
+                <div class="team-info">
+                    <h4>Юрій Палєй</h4>
+                    <p>Керуючий партнер, адвокат</p>
+                </div>
+            </div>
+
+            <div class="team-card">
+                <img src="images/partner.jpg" alt="Партнер Бюро — Адвокат" class="team-photo">
+                <div class="team-info">
+                    <h4>Партнер Бюро</h4>
+                    <p>Адвокат, магістр права</p>
+                </div>
             </div>
 
         </section>
@@ -374,7 +467,7 @@
         © 2026 АБ "ПАЛЄЙ І ПАРТНЕРИ". Всі права захищені.
     </footer>
 
-    <!-- Ініціалізація єдиного стилю іконок -->
+    <!-- Ініціалізація іконок -->
     <script>
         lucide.createIcons();
     </script>
