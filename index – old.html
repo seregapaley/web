@@ -1,394 +1,382 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>АБ "ПАЛЄЙ І ПАРТНЕРИ" — Адвокатське бюро Львів</title>
-  <meta name="description" content="Адвокатське бюро 'ПАЛЄЙ І ПАРТНЕРИ' — професійна юридична допомога у Львові. Захист прав, супровід бізнесу, представництво в суді.">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <link href="https://googleapis.com" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #0f172a; /* Глибокий синій */
-      --accent: #b45309;  /* Стримане золото/бурштин */
-      --accent-light: #fef3c7;
-      --text-dark: #1e293b;
-      --text-light: #64748b;
-      --bg-light: #f8fafc;
-      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
-      --transition: all 0.3s ease;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>АБ "ПАЛЄЙ І ПАРТНЕРИ" — Адвокатське бюро Львів</title>
+    
+    <!-- [+] ДОДАНЕ ЗАВДАННЯ: Фавікон у вкладку браузера (Сучасний SVG-формат з емодзі) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://w3.org viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚖️</text></svg>">
+    
+    <!-- Підключення шрифтів та паку іконок для єдиного стилю -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com"></script>
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    <style>
+        /* [+] ЗАВДАННЯ: СТИЛІ АДАПТИВНОСТІ (ШРИФТИ, ВІДСТУПИ, СІТКА) */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #2D3748;
+            background-color: #F8FAFC;
+            line-height: 1.6;
+            padding-bottom: 80px; /* Захисний відступ під мобільну кнопку */
+        }
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* Шапка сайту */
+        header {
+            background-color: #1A202C;
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-weight: 700;
+            font-size: 1.3rem;
+            letter-spacing: 0.5px;
+        }
+        nav a {
+            color: #CBD5E0;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+        nav a:hover { color: white; }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      color: var(--text-dark);
-      background-color: var(--bg-light);
-      line-height: 1.6;
-    }
+        /* Головний блок (Hero) */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            margin: 20px 0 60px 0;
+            border: 1px solid #E2E8F0;
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            color: #1A202C;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: #4A5568;
+            margin-bottom: 35px;
+        }
 
-    h1, h2, h3 {
-      font-family: 'Playfair Display', serif;
-    }
+        /* [+] ЗАВДАННЯ: КОНТРАСТНА ЧЕРВОНА КНОПКА З АНІМАЦІЄЮ */
+        .btn-urgent {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background-color: #E63946; /* Яскравий червоний */
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 18px 36px;
+            border-radius: 8px;
+            box-shadow: 0 4px 18px rgba(230, 57, 70, 0.4);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            animation: pulse-animation 2s infinite;
+        }
+        .btn-urgent:hover {
+            background-color: #C32F3A;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 22px rgba(195, 47, 58, 0.5);
+        }
+        @keyframes pulse-animation {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
 
-    /* Навігація */
-    nav {
-      background-color: white;
-      position: fixed;
-      top: 0; width: 100%; z-index: 1000;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 5%;
-    }
+        /* Заголовки секцій */
+        h2.section-title {
+            font-size: 2rem;
+            color: #1A202C;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
 
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: 20px;
-      color: var(--primary);
-    }
+        /* [+] ЗАВДАННЯ: ЄДИНИЙ СТИЛЬ ДЛЯ ІКОНОК ТА КАРТОК ПОСЛУГ */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        .service-card {
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            border: 1px solid #E2E8F0;
+            transition: all 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+            border-color: #CBD5E0;
+        }
+        .icon-box {
+            color: #1A202C; /* Єдиний темний колір для всіх іконок сайту */
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        .service-card h3 {
+            font-size: 1.3rem;
+            color: #1A202C;
+            margin-bottom: 12px;
+        }
+        .service-card p {
+            color: #718096;
+            font-size: 0.95rem;
+        }
 
-    .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 25px;
-    }
+        /* Секція переваг */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+        .benefit-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #E2E8F0;
+        }
+        .benefit-card .icon-box { margin-bottom: 10px; color: #4A5568; }
+        .benefit-card h4 { margin-bottom: 8px; font-size: 1.1rem; }
 
-    .nav-links a {
-      text-decoration: none;
-      color: var(--text-dark);
-      font-weight: 500;
-      transition: var(--transition);
-    }
+        /* Контакти */
+        .contacts-section {
+            background: #1A202C;
+            color: white;
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+        }
+        .contacts-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin: 25px 0;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #E2E8F0;
+            font-size: 1.1rem;
+        }
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .btn-social {
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            font-size: 0.95rem;
+            background: #2D3748;
+            transition: background 0.2s;
+        }
+        .btn-social:hover { background: #4A5568; }
 
-    .nav-links a:hover {
-      color: var(--accent);
-    }
-
-    /* Головний екран */
-    header {
-      background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)),
-                  url('https://images.unsplash.com/photo-1589820296083-4f3c3f3f3f3f?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-      color: white;
-      padding: 160px 20px 100px;
-      text-align: center;
-    }
-
-    header h1 {
-      font-size: 46px;
-      margin-bottom: 20px;
-      letter-spacing: 0.5px;
-    }
-
-    header p {
-      font-size: 20px;
-      max-width: 600px;
-      margin: 0 auto 30px;
-      color: #cbd5e1;
-      font-weight: 300;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 80px 20px;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 32px;
-      margin-bottom: 40px;
-      position: relative;
-      color: var(--primary);
-    }
-
-    .section-title::after {
-      content: '';
-      display: block;
-      width: 50px;
-      height: 3px;
-      background-color: var(--accent);
-      margin: 10px auto 0;
-    }
-
-    /* Про нас */
-    .about-text {
-      font-size: 18px;
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto;
-      color: var(--text-light);
-    }
-<!-- БЛОК ПРО ЗАСНОВНИКА -->
-<div style="background-color: #ffffff; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
-  <div class="container founder-section">
-    <div class="founder-grid">
-      <div class="founder-image-wrapper">
-        <!-- ТУТ ЗАМІНИ ПОСИЛАННЯ НА СВОЄ РЕАЛЬНЕ ФОТО -->
-        <img src="https://unsplash.com" alt="Адвокат Палєй" class="founder-img">
-      </div>
-      <div class="founder-info">
-        <span class="founder-subtitle">Керуючий партнер бюро</span>
-        <h2 class="founder-name">Адвокат Палєй</h2>
-        <p class="founder-bio">
-          Понад 30 років успішної юридичної практики у сфері захисту бізнесу, кримінального та цивільного права. Головний принцип моєї роботи — глибокий аналіз кожного кейсу та розробка індивідуальної стратегії, що веде до реального результату. Безвихідних ситуацій не існує, якщо за справу береться професіонал.
-        </p>
-        <div class="founder-credentials">
-          <div class="cred-item">
-            <strong>Свідоцтво адвоката:</strong> № 000000 від 00.00.0000 р.
-          </div>
-          <div class="cred-item">
-            <strong>Спеціалізація:</strong> Судові спори, захист у кримінальних провадженнях, комплексний супровід бізнесу.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-    /* Послуги */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-    }
-
-    .service-card {
-      background: white;
-      padding: 25px;
-      border-radius: 8px;
-      box-shadow: var(--shadow);
-      border-top: 4px solid var(--primary);
-      transition: var(--transition);
-    }
-
-    .service-card:hover {
-      transform: translateY(-5px);
-      border-top-color: var(--accent);
-    }
-
-    .service-card h3 {
-      margin-bottom: 10px;
-      font-size: 20px;
-    }
-
-    /* Переваги */
-    .advantages-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 25px;
-      text-align: center;
-    }
-
-    .adv-item {
-      background: white;
-      padding: 30px 20px;
-      border-radius: 8px;
-      box-shadow: var(--shadow);
-    }
-
-    .adv-icon {
-      font-size: 32px;
-      margin-bottom: 15px;
-    }
-
-    .adv-item h3 {
-      font-size: 18px;
-      margin-bottom: 10px;
-    }
-
-    .adv-item p {
-      font-size: 14px;
-      color: var(--text-light);
-    }
-
-    /* Контакти */
-    .contact-wrapper {
-      background: white;
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: var(--shadow);
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .contact-info {
-      font-size: 18px;
-      margin-bottom: 30px;
-    }
-
-    .contact-info p {
-      margin-bottom: 10px;
-    }
-
-    .btn-group {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-    }
-
-    .btn {
-      padding: 14px 28px;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      transition: var(--transition);
-    }
-
-    .btn-primary {
-      background-color: var(--primary);
-      color: white;
-    }
-
-    .btn-primary:hover {
-      background-color: #1e293b;
-    }
-
-    .btn-telegram {
-      background-color: #0088cc;
-      color: white;
-    }
-
-    .btn-telegram:hover {
-      background-color: #0077b5;
-    }
-
-    footer {
-      background-color: var(--primary);
-      color: #94a3b8;
-      text-align: center;
-      padding: 30px 20px;
-      font-size: 14px;
-    }
-
-    @media (max-width: 768px) {
-      nav { display: none; } /* Спрощення для мобільних без JS */
-      header { padding-top: 100px; }
-      header h1 { font-size: 32px; }
-      header p { font-size: 16px; }
-      .section-title { font-size: 26px; }
-      .contact-wrapper { padding: 25px; }
-      .btn { width: 100%; justify-content: center; }
-    }
-  </style>
+        /* [+] ЗАВДАННЯ: МЕДІА-ЗАПИТИ ДЛЯ ПЕРЕВІРКИ МОБІЛЬНОЇ АДАПТИВНОСТІ */
+        @media (max-width: 768px) {
+            .container { padding: 20px 15px; }
+            .header-flex { flex-direction: column; gap: 15px; text-align: center; }
+            nav a { margin: 0 10px; font-size: 0.9rem; }
+            
+            .hero { padding: 40px 15px; margin-bottom: 40px; }
+            .hero h1 { font-size: 1.9rem; }
+            .hero p { font-size: 1rem; margin-bottom: 25px; }
+            
+            h2.section-title { font-size: 1.5rem; margin-bottom: 25px; }
+            .services-grid { grid-template-columns: 1fr; gap: 20px; }
+            .service-card { padding: 25px; }
+            
+            /* Фіксація термінової кнопки внизу екрана мобільного телефона */
+            .mobile-sticky-holder {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 12px 15px;
+                box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+                z-index: 999;
+            }
+            .btn-urgent {
+                width: 100%;
+                font-size: 1rem;
+                padding: 14px 20px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<nav>
-  <div class="logo">АБ "ПАЛЄЙ І ПАРТНЕРИ"</div>
-  <ul class="nav-links">
-    <li><a href="#about">Про нас</a></li>
-    <li><a href="#services">Послуги</a></li>
-    <li><a href="#advantages">Переваги</a></li>
-    <li><a href="#contact">Контакти</a></li>
-  </ul>
-</nav>
+    <!-- Шапка сайту -->
+    <header>
+        <div class="container" style="padding: 0 20px;">
+            <div class="header-flex">
+                <div class="logo">АБ "ПАЛЄЙ І ПАРТНЕРИ"</div>
+                <nav>
+                    <a href="#about">Про нас</a>
+                    <a href="#services">Послуги</a>
+                    <a href="#contacts">Контакти</a>
+                </nav>
+            </div>
+        </div>
+    </header>
 
-<header>
-  <h1>АБ "ПАЛЄЙ І ПАРТНЕРИ"</h1>
-  <p>Захищаємо ваші права. Професійно. Надійно. Конфіденційно.</p>
-  <a href="tel:+380931611020" class="btn btn-primary" style="background-color: var(--accent);">Термінова консультація</a>
-</header>
+    <div class="container">
+        
+        <!-- Головна секція з оновленою кнопкою -->
+        <section class="hero">
+            <h1>Захищаємо ваші права.<br>Професійно. Надійно. Конфіденційно.</h1>
+            <p>Адвокатське бюро у Львові — Ваша персональна юридична опора.</p>
+            
+            <div class="mobile-sticky-holder">
+                <a href="tel:+380931611020" class="btn-urgent">
+                    <i data-lucide="phone-call" style="width: 20px; height: 20px;"></i>
+                    Термінова консультація
+                </a>
+            </div>
+        </section>
 
-<div class="container" id="about">
-  <h2 class="section-title">Про нас</h2>
-  <p class="about-text">Адвокатське бюро "ПАЛЄЙ І ПАРТНЕРИ" — команда досвідчених юристів, яка надає повний спектр правової допомоги фізичним та юридичним особам. Ми працюємо на результат, базуючись на принципах абсолютної довіри та суворої конфіденційності.</p>
-</div>
+        <!-- Розділ "Про нас" -->
+        <h2 class="section-title" id="about">Про нас</h2>
+        <section style="background: white; padding: 30px; border-radius: 12px; border: 1px solid #E2E8F0; margin-bottom: 60px;">
+            <p style="color: #4A5568; font-size: 1.1rem; text-align: center; max-width: 800px; margin: 0 auto;">
+                Адвокатське бюро "ПАЛЄЙ І ПАРТНЕРИ" — команда досвідчених юристів, яка надає повний спектр правової допомоги фізичним та юридичним особам. Ми працюємо на результат, базуючись на принципах абсолютної довіри та суворої конфіденційності.
+            </p>
+        </section>
 
-<div style="background-color: white;">
-  <div class="container" id="services">
-    <h2 class="section-title">Наші послуги</h2>
-    <div class="services-grid">
-      <div class="service-card">
-        <h3>Цивільне право</h3>
-        <p>Спори щодо майна, спадщини, договорів та відшкодування збитків.</p>
-      </div>
-      <div class="service-card">
-        <h3>Кримінальні справи</h3>
-        <p>Захист інтересів на всіх стадіях кримінального провадження.</p>
-      </div>
-      <div class="service-card">
-        <h3>Сімейні спори</h3>
-        <p>Розірвання шлюбу, поділ майна, аліменти та визначення місця проживання дітей.</p>
-      </div>
-      <div class="service-card">
-        <h3>Юридичний супровід бізнесу</h3>
-        <p>Абонентське обслуговування компаній, аналіз ризиків та підготовка контрактів.</p>
-      </div>
-      <div class="service-card">
-        <h3>Представництво в суді</h3>
-        <p>Професійний захист ваших інтересів у судах всіх інстанцій.</p>
-      </div>
-      <div class="service-card">
-        <h3>Виконавче провадження</h3>
-        <p>Супровід та контроль процесу реального виконання судових рішень.</p>
-      </div>
+        <!-- Розділ послуг в єдиному графічному стилі -->
+        <h2 class="section-title" id="services">Наші послуги</h2>
+        <section class="services-grid">
+            
+            <div class="service-card">
+                <div class="icon-box"><i data-lucide="scale" size="36"></i></div>
+                <h3>Цивільне право</h3>
+                <p>Спори щодо майна, спадщини, договорів та відшкодування збитків.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="icon-box"><i data-lucide="gavel" size="36"></i></div>
+                <h3>Кримінальні справи</h3>
+                <p>Захист інтересів на всіх стадіях кримінального провадження.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="icon-box"><i data-lucide="heart" size="36"></i></div>
+                <h3>Сімейні спори</h3>
+                <p>Розірвання шлюбу, поділ майна, аліменти та визначення місця проживання.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="icon-box"><i data-lucide="briefcase" size="36"></i></div>
+                <h3>Юридичний супровід бізнесу</h3>
+                <p>Абонентське обслуговування компаній, аналіз ризиків та підготовка контрактів.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="icon-box"><i data-lucide="landmark" size="36"></i></div>
+                <h3>Представництво в суді</h3>
+                <p>Професійний захист ваших інтересів у судах всіх інстанцій.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="icon-box"><i data-lucide="file-check-2" size="36"></i></div>
+                <h3>Виконавче провадження</h3>
+                <p>Супровід та контроль процесу реального виконання судових рішень.</p>
+            </div>
+
+        </section>
+
+        <!-- Чому обирають нас -->
+        <h2 class="section-title">Чому обирають нас</h2>
+        <section class="benefits-grid">
+            <div class="benefit-card">
+                <div class="icon-box"><i data-lucide="user-check"></i></div>
+                <h4>Індивідуальний підхід</h4>
+            </div>
+            <div class="benefit-card">
+                <div class="icon-box"><i data-lucide="award"></i></div>
+                <h4>Висока кваліфікація</h4>
+            </div>
+            <div class="benefit-card">
+                <div class="icon-box"><i data-lucide="eye"></i></div>
+                <h4>Прозорість у роботі</h4>
+            </div>
+            <div class="benefit-card">
+                <div class="icon-box"><i data-lucide="shield-check"></i></div>
+                <h4>Конфіденційність</h4>
+            </div>
+        </section>
+
+        <!-- Контакти -->
+        <section class="contacts-section" id="contacts">
+            <h2 style="color: white; margin-bottom: 10px;">Контакти</h2>
+            <div class="contacts-info">
+                <div class="contact-item">
+                    <i data-lucide="map-pin"></i> Львів, вул. Йосипа Сліпого 4/1
+                </div>
+                <div class="contact-item">
+                    <i data-lucide="phone"></i> +38 (093) 161-10-20
+                </div>
+            </div>
+            <div class="social-buttons">
+                <a href="tel:+380931611020" class="btn-social">Зателефонувати</a>
+                <a href="mailto:paleypartners@gmail.com" class="btn-social">Email</a>
+                <a href="https://t.me" class="btn-social">Telegram</a>
+            </div>
+        </section>
+
     </div>
-  </div>
-</div>
 
-<div class="container" id="advantages">
-  <h2 class="section-title">Чому обирають нас</h2>
-  <div class="advantages-grid">
-    <div class="adv-item">
-      <div class="adv-icon">👤</div>
-      <h3>Індивідуальний підхід</h3>
-      <p>Глибокий аналіз кожної деталі вашої справи.</p>
-    </div>
-    <div class="adv-item">
-      <div class="adv-icon">🎓</div>
-      <h3>Висока кваліфікація</h3>
-      <p>Багаторічний практичний досвід захисту.</p>
-    </div>
-    <div class="adv-item">
-      <div class="adv-icon">🤝</div>
-      <h3>Прозорість</h3>
-      <p>Зрозумілі ціни та чесна оцінка перспектив справи.</p>
-    </div>
-    <div class="adv-item">
-      <div class="adv-icon">🔒</div>
-      <h3>Конфіденційність</h3>
-      <p>Суворе дотримання адвокатської таємниці.</p>
-    </div>
-  </div>
-</div>
+    <footer style="text-align: center; padding: 20px; color: #A0AEC0; font-size: 0.85rem;">
+        © 2026 АБ "ПАЛЄЙ І ПАРТНЕРИ". Всі права захищені.
+    </footer>
 
-<div style="background-color: #f1f5f9;" id="contact">
-  <div class="container">
-    <h2 class="section-title">Контакти</h2>
-    <div class="contact-wrapper">
-      <div class="contact-info">
-        <p>📍 Львів, вул. Йосипа Сліпого 4/1</p>
-        <p>📞 <a href="tel:+380931611020" style="color: inherit; text-decoration: none; font-weight: 600;">+38 (093) 161-10-20</a></p>
-        <p>✉️ paleypartners@gmail.com</p>
-      </div>
-      <div class="btn-group">
-        <a href="tel:+380931611020" class="btn btn-primary">Зателефонувати</a>
-        <a href="mailto:paleypartners@gmail.com" class="btn btn-primary" style="background-color: #475569;">Написати на Email</a>
-        <a href="https://t.me/Paleyandpartners" target="_blank" class="btn btn-telegram">Telegram</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<footer>
-  <p>&copy; 2026 АБ "ПАЛЄЙ І ПАРТНЕРИ". Всі права захищені.</p>
-</footer>
-
+    <!-- Ініціалізація єдиного стилю іконок -->
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>
